@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/nahass/githup/Automotive-Android/C++/01_Session/labs/01_dynamic array",
-      "program": "/home/nahass/githup/Automotive-Android/C++/01_Session/labs/01_dynamic array/build/Debug/outDebug",
+      "cwd": "/home/nahass/githup/Automotive-Android/C++/01_Session/labs/02_dynamic array",
+      "program": "/home/nahass/githup/Automotive-Android/C++/01_Session/labs/02_dynamic array/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
