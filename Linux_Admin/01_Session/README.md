@@ -509,6 +509,401 @@ The Linux filesystem hierarchy is structured to keep the system organized and ef
 
 Understanding these directories and their contents is crucial for navigating and managing a Linux system effectively.
 
+//proc -> running process
+kernel provide user
+1-to know running process
+2-consume resource
+size in ram not in hard disk
+
+
+//sys systme
+1-user interact HW through file
+2-provided by kernel
+size in ram not in hard disk
+//gpio
+
+//dev device node
+dev/tty
+
+
+compare between /sys and /dev
+
+
+## /proc, /sys, and /dev in Linux
+
+Linux provides several special directories (/proc, /sys, and /dev) that facilitate interactions between userspace applications and the kernel, especially concerning processes, system information, and hardware devices.
+
+### /proc
+
+- **Purpose**: Provides a virtual filesystem interface to kernel data structures.
+- **Functionality**:
+  1. **View Running Processes**: `/proc` allows users to view detailed information about running processes, such as process IDs, memory usage, and CPU usage.
+  2. **Resource Consumption**: Users can monitor resource consumption by processes, including memory and CPU usage.
+  3. **Size**: Data in `/proc` resides in RAM, not on the hard disk, and dynamically updates to reflect the current system state.
+
+### /sys
+
+- **Purpose**: Virtual filesystem for exposing kernel data structures and device information.
+- **Functionality**:
+  1. **User Interaction with Hardware**: `/sys` allows userspace applications to interact with hardware devices and kernel modules using files and directories.
+  2. **Provided by Kernel**: It is provided directly by the kernel to expose information and configurations related to devices and drivers.
+  3. **Size**: Similar to `/proc`, data in `/sys` resides in RAM, not on the hard disk, and provides real-time information about the system and hardware status.
+
+### /dev
+
+- **Purpose**: Contains device nodes that allow user-space programs to communicate with hardware devices.
+- **Functionality**:
+  - **Device Nodes**: `/dev` provides special device files (nodes) that represent physical and virtual devices.
+  - **Examples**: `/dev/tty` represents the controlling terminal device.
+  - **Size**: Device nodes in `/dev` are small metadata files stored in the filesystem, with actual data transfer occurring through memory buffers.
+
+### Comparison between /sys and /dev
+
+| Feature        | /sys                               | /dev                                      |
+|----------------|------------------------------------|-------------------------------------------|
+| **Purpose**    | Exposes kernel data and device info| Provides access to hardware devices       |
+| **Interaction**| Configuration and monitoring       | Input/output operations                   |
+| **Data Size**  | Resides in RAM                     | Resides in RAM                            |
+| **File Type**  | Virtual filesystem                 | Special device files (nodes)              |
+| **Examples**   | `/sys/devices`, `/sys/class`       | `/dev/tty`, `/dev/sda`                    |
+| **Usage**      | Configuration and monitoring       | Device input/output operations            |
+
+### Summary
+
+- **/proc**: Virtual filesystem for accessing process and system information, useful for monitoring and managing running processes and resource consumption.
+- **/sys**: Virtual filesystem exposing kernel data structures and device information, facilitating user interaction with hardware devices and kernel modules.
+- **/dev**: Contains device nodes representing physical and virtual devices, enabling user-space programs to communicate with hardware.
+
+Understanding these directories helps users effectively manage processes, monitor system resources, interact with hardware, and configure kernel parameters in Linux.
+
+
+## Command Line Interface (CLI)
+
+The Command Line Interface (CLI) is a text-based interface used to interact with the operating system or software by typing commands. Here are some basic commands and concepts related to CLI usage:
+
+#### Navigation Commands
+
+```bash
+# cd (Change Directory)
+# Changes the current working directory.
+cd /home/user
+
+# ls (List)
+# Lists files and directories in the current directory.
+ls -l
+
+# pwd (Print Working Directory)
+# Prints the current working directory path.
+pwd
+Information Commands
+bash
+Copy code
+# help
+# Provides built-in help for shell commands.
+help cd
+
+# man (Manual)
+# Displays the manual pages for commands.
+man ls
+
+# info
+# Provides information about commands and other topics.
+```
+
+### Types of Commands
+
+Commands in the CLI can be categorized into three types:
+
+- Internal Commands: Built-in commands provided by the shell itself.
+Example: cd, pwd
+
+- External Commands: Programs located in separate executable files.
+Example: ls, grep
+
+- Alias Commands: Custom shortcuts or aliases defined by users.
+Example: alias ll='ls -l'
+
+### man -k or apropos
+man -k: Searches the manual page names and descriptions for a keyword.
+Example: man -k string searches for commands related to "string".
+
+### Relative Path vs Absolute Path
+- Relative Path: Specifies a location relative to the current directory.
+Example: cd Documents (moves to ~/Documents if current directory is ~).
+
+- Absolute Path: Specifies the complete path starting from the root directory (/).
+Example: cd /home/user/Documents.
+
+Understanding these CLI basics allows users to navigate, execute commands, and manage files efficiently in Unix-like operating systems.
+
+
+
+### Command Line Basics
+
+#### Create Directory
+
+- **mkdir**: Command to create a new directory.
+  Example: `mkdir mydir`
+
+#### Remove Directory
+
+- **rmdir**: Removes an empty directory.
+  Example: `rmdir mydir`
+
+- **rm -r**: Recursive removal of files and directories.
+  Example: `rm -r mydir`
+
+#### Create File
+
+- **touch**: Command to create an empty file or update file timestamps.
+  Example: `touch myfile.txt`
+
+#### Delete File
+
+- **rm**: Removes files.
+  Example: `rm myfile.txt`
+
+#### Copy Files and Directories
+
+- **cp**: Copies files and directories.
+  Example: `cp -r mydir/* ~/ITI`
+
+#### Move Files and Directories
+
+- **mv**: Moves or renames files and directories.
+  Example: `mv myfile.txt newfile.txt`
+
+#### Wildcards
+
+- **Wildcard Examples**:
+  - `ls ~/h*o`: Lists files starting with 'h' and ending with 'o'.
+  - `ls ~/h???o`: Lists files starting with 'h', followed by three characters, and ending with 'o'.
+  - `ls ~/h[a-l]??o`: Lists files starting with 'h', followed by a character between 'a' and 'l', and then two more characters before ending with 'o'.
+  - `cp ~/*.c source`: Copies all files with the extension `.c` from the home directory to the `source` directory.
+  - `cp {*.c,*.pdf} source`: Copies files with either `.c` or `.pdf` extension to the `source` directory.
+
+These basic commands and techniques allow users to efficiently manage directories, files, and perform operations using wildcards in a Unix-like command line interface.
+
+
+# Understanding System Concepts: Variables, Processes, Threads, and Cores
+
+## Variables: Local vs Global
+
+### Local Variables
+- **Definition**: Local variables are defined within a specific scope, such as within a function or script.
+- **Example**:
+```bash
+  function myfunc {
+      local var=3
+      echo "Local variable: $var"
+  }
+  myfunc
+```
+
+### Global Variables
+
+- Definition: Global variables are accessible across different scopes within a shell session.
+Example:
+```bash
+VAR=3
+echo "Global variable: $VAR"
+#Exporting Variables
+#Export: Allows a local variable to be accessed in child processes.
+export VAR=3
+#Unexport: Removes the variable from the environment of child processes.
+export -n VAR
+```
+
+## Processes vs Threads
+- Processes
+Definition: A process is an instance of a program that is being executed.
+Resource Sharing: Processes have separate memory spaces and must use inter-process communication (IPC) to share data.
+Example: Each browser tab running independently is a separate process.
+- Threads
+Definition: Threads are lightweight processes within a process that share the same memory space.
+Communication: Threads can communicate with each other directly through shared memory.
+Example: A web server handling multiple client requests using threads.
+
+## Core and Multi-core Processors
+- CPU Cores
+Definition: A CPU core is an independent processing unit capable of executing instructions.
+- Multi-core CPUs: CPUs with multiple cores allow for parallel execution of processes and threads.
+- Example: A quad-core processor can execute four sets of instructions simultaneously.
+Benefits
+- Performance: Enables parallel processing, improving overall system performance.
+Concurrency: Allows multiple tasks to be executed simultaneously.
+
+## Process and Thread Execution
+Processes: Can utilize multiple cores to run different processes concurrently.
+Threads: Can execute on different cores within a process, sharing resources more efficiently than separate processes.
+
+## Summary
+Understanding variables, processes, threads, and CPU cores is crucial for optimizing system performance and managing resource allocation effectively in computing environments. Variables control data scope, processes manage program execution, threads facilitate concurrent operations, and CPU cores enable parallel processing to meet modern computing demands.
+
+
+# Understanding Environment Variables
+
+Environment variables are dynamic named values that affect the behavior of processes in Unix-like operating systems. Here’s a guide to commonly used environment variables, their locations, and how to manage them.
+
+## Common Environment Variables
+
+### 1. HOME
+
+- **Location**: Stores the path to the user's home directory.
+
+### 2. PWD
+
+- **Location**: Stores the current working directory of the shell or script.
+
+### 3. USER
+
+- **Location**: Stores the username of the current user.
+
+### 4. PATH
+
+- **Location**: Stores a colon-separated list of directories where executable files are located.
+
+## Setting Environment Variables
+
+Environment variables are typically set in shell configuration files such as `~/.bashrc`, `~/.bash_profile`, or by scripts during system startup.
+
+### Temporary Change
+
+To temporarily change an environment variable in the current shell session:
+```bash
+VARNAME=value   # Set the variable
+export VARNAME  # Export it to make it available to child processes
+```
+### Permanent Change
+To permanently change an environment variable for a user, modify their shell configuration file and add:
+
+```bash
+export VARNAME=value
+```
+Summary
+Understanding environment variables is crucial for customizing system behavior and ensuring efficient operation of shell scripts and applications in Unix-like systems.
+
+
+# Understanding the PATH Environment Variable
+
+The `PATH` environment variable is a crucial part of Unix-like operating systems, containing a colon-separated list of directories where executable files are located. Here’s a guide to understanding `PATH` and various methods to adjust it.
+
+## What is the PATH Variable?
+
+- **Definition**: `PATH` specifies directories where the system looks for executable files without needing to provide a full path to the executable.
+- **Default Value**: Typically includes directories like `/usr/bin`, `/bin`, `/usr/local/bin`, etc.
+
+## Adjusting the PATH Variable
+
+### 1. Temporary Adjustment
+
+To temporarily modify `PATH` in the current shell session:
+```bash
+PATH=$PATH:/new/directory   # Append a directory to PATH
+export PATH                 # Export PATH to make it available to child processes
+```
+
+### 2. Permanently Adjusting for a User
+To permanently modify PATH for a user, edit their shell configuration file (~/.bashrc, ~/.bash_profile, etc.) and add:
+
+```bash
+export PATH=$PATH:/new/directory
+```
+### 3. System-wide Adjustment
+To modify PATH system-wide for all users, add the desired directories to the system-wide configuration files (/etc/profile, /etc/environment, etc.).
+
+### 4. Using Profile Scripts
+You can also create or modify shell profile scripts (/etc/profile, /etc/profile.d/*.sh, etc.) to set PATH for all users or specific users.
+
+### 5. Adjusting PATH in Scripts
+Inside shell scripts, you can modify PATH locally for the script's execution by using:
+
+```bash
+#!/bin/bash
+PATH=$PATH:/additional/path
+```
+
+### Summary
+Understanding how to adjust the PATH environment variable is essential for managing executable files and ensuring that commands and programs are found and executed correctly in Unix-like systems.
+
+
+# Understanding Command Types and Shells
+
+## Types of Commands
+
+Commands in Unix-like operating systems can be categorized into three types: external commands, internal commands, and aliases.
+
+### 1. External Commands
+
+- **Definition**: Commands that are executable files located in directories specified in the `PATH` environment variable.
+- **Examples**: All commands found in `/bin`, `/usr/bin`, `/usr/sbin`, etc.
+  - Examples include `ls`, `grep`, `find`, and `awk`.
+
+### 2. Internal Commands
+
+- **Definition**: Built-in commands provided by the shell itself, not external executable files.
+- **Examples**: Internal commands provided by the shell (e.g., `/bin/bash`).
+  - Examples include `echo`, `source`, `export`, `exit`, and `.`.
+
+### 3. Aliases
+
+- **Definition**: Custom shortcuts created by users to represent other commands or sequences of commands.
+- **Examples**:
+  - `alias ll='ls -l'`
+  - `alias gs='git status'`
+
+## Types of Shells
+
+A shell is a command-line interpreter that provides a user interface for accessing the services of the operating system. There are several types of shells available in Unix-like systems.
+
+### 1. Bash (Bourne Again Shell)
+
+- **Definition**: The most commonly used shell, known for its compatibility with the Bourne shell (`sh`) and additional features.
+- **Location**: Usually found at `/bin/bash`.
+
+### 2. Zsh (Z Shell)
+
+- **Definition**: An extended version of the Bourne shell with many improvements and additional features.
+- **Location**: Typically found at `/bin/zsh`.
+
+### 3. Ksh (Korn Shell)
+
+- **Definition**: A shell developed by David Korn, which includes features of both the Bourne shell and the C shell.
+- **Location**: Often found at `/bin/ksh`.
+
+### 4. Tcsh (TENEX C Shell)
+
+- **Definition**: An enhanced version of the C shell (`csh`), featuring command-line editing and other improvements.
+- **Location**: Usually found at `/bin/tcsh`.
+
+### 5. Fish (Friendly Interactive Shell)
+
+- **Definition**: A user-friendly shell that includes syntax highlighting, autosuggestions, and other interactive features.
+- **Location**: Typically found at `/usr/bin/fish`.
+
+## Summary
+
+Understanding the types of commands and shells available in Unix-like systems is crucial for efficient system administration and script writing. External commands are standalone executables, internal commands are built into the shell, and aliases provide customizable shortcuts. Different shells offer various features and capabilities, with Bash being the most commonly used.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
