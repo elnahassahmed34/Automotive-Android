@@ -66,6 +66,9 @@
   ],
   "files.associations": {
     "*.conf": "bitbake",
-    "*.inc": "bitbake"
-  }
+    "*.inc": "bitbake",
+    "vector": "cpp",
+    "iostream": "cpp"
+  },
+  "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
