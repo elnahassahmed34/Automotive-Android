@@ -69,10 +69,6 @@ class DynamicArray{
         delete[] arr ;
     }
 
-//        * resize() - resize the array to double the size
-    void resize(int size){
-        this->size = size * 2 ;
-    }
 //        * pushback(value) - add the value to the end of the array
     void pushback(int value){
         if(capacity > size){
