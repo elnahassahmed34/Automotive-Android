@@ -1,29 +1,31 @@
 #include <iostream>
 #include <initializer_list>
 
+template<typename T>
 class DynamicArray {
-    int* arr;
+    T* arr;
     int size;
     int capacity;
 
 public:
+    
     DynamicArray() : size(0), capacity(1) {
-        arr = new int[capacity];
+        arr = new T[capacity];
     }
 
     DynamicArray(int size) : size(size), capacity(size * 2) {
-        arr = new int[capacity];
+        arr = new T[capacity];
     }
 
-    DynamicArray(int size, int value) : size(size), capacity(size * 2) {
-        arr = new int[capacity];
+    DynamicArray(int size, T value) : size(size), capacity(size * 2) {
+        arr = new T[capacity];
         for (int i = 0; i < size; i++) {
             arr[i] = value;
         }
     }
 
-    DynamicArray(int size, std::initializer_list<int> list) : size(size), capacity(size * 2) {
-        arr = new int[capacity];
+    DynamicArray(int size, std::initializer_list<T> list) : size(size), capacity(size * 2) {
+        arr = new T[capacity];
         int i = 0;
         for (auto val : list) {
             arr[i] = val;
@@ -32,7 +34,7 @@ public:
     }
 
     DynamicArray(const DynamicArray& obj) : size(obj.size), capacity(obj.capacity) {
-        arr = new int[capacity];
+        arr = new T[capacity];
         for (int i = 0; i < size; i++) {
             arr[i] = obj.arr[i];
         }
@@ -45,7 +47,7 @@ public:
     void resize(int newSize) {
         if (newSize > capacity) {
             capacity = newSize * 2;
-            int* newArr = new int[capacity];
+            T* newArr = new T[capacity];
             for (int i = 0; i < size; i++) {
                 newArr[i] = arr[i];
             }
@@ -55,7 +57,7 @@ public:
         size = newSize;
     }
 
-    void pushback(int value) {
+    void pushback(T value) {
         if (size >= capacity) {
             resize(size + 1);
         }
@@ -63,12 +65,13 @@ public:
         size++;
     }
 
-    int popback() {
+    T popback() {
         if (size > 0) {
             size--;
             return arr[size];
         }
         return -1; 
+    }
 
     void removeat(int index) {
         if (index >= 0 && index < size) {
@@ -79,7 +82,7 @@ public:
         }
     }
 
-    void insertat(int index, int value) {
+    void insertat(int index, T value) {
         if (index >= 0 && index <= size) {
             if (size >= capacity) {
                 resize(size + 1);
@@ -92,7 +95,7 @@ public:
         }
     }
 
-    void insertMiddle(int value) {
+    void insertMiddle(T value) {
         int index = size / 2;
         insertat(index, value);
     }
@@ -114,7 +117,7 @@ public:
 };
 
 int main() {
-   DynamicArray vec(5, 0);
+    DynamicArray<int> vec(5, 0);
 
     vec.pushback(1);
     vec.pushback(2);
@@ -132,5 +135,4 @@ int main() {
 
     vec.print();
 
-    return 0;
 }
