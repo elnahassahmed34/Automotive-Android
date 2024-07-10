@@ -69,7 +69,7 @@ public:
             return arr[size];
         }
         return -1; 
-
+    }
     void removeat(int index) {
         if (index >= 0 && index < size) {
             for (int i = index; i < size - 1; i++) {
@@ -121,7 +121,7 @@ int main() {
     vec.pushback(3);
 
     vec.popback();
-
+    
     vec.insertat(2, 10);
 
     vec.removeat(1);
