@@ -7,3 +7,5 @@ static .a
 
 dis : size + recombile
 adv : portable + fast excution
+
+gcc -c add.c  -o add.o
