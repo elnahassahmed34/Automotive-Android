@@ -3,9 +3,9 @@
 ![Alt text](https://www.linuxbnb.net/wp-content/uploads/2018/06/system-call-overview-1.png)
 
 
-- user app -> write -> glibc -> assembly code {write r7 =system call id , arguments r0 r1 r2 }
+- user app -> write -> glibc -> assembly code {write r7 =system call id , arguments r0 r1 r2 intruppt }
 
-- kernel app -> read registers -> excute the id -> write
+- kernel app -> handler (read registers -> excute the id -> write
 
 - follow these topics 
 	- https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md
