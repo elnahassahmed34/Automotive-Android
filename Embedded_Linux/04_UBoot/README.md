@@ -116,7 +116,7 @@ saveenv
 - load file in ram from sd card
     - bd info
     - DRAM bank   = 0x00000001
-    - -> start    = 0x80000000
+    - -> start    = 0x60000000
     - md 0x60000000
     - fatload mmc 0:1 0x60000000 zimage 
     - md 0x60000000
