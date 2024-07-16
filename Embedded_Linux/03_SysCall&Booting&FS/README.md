@@ -148,11 +148,14 @@ sudo losetup -f --show --partscan sd.img
 sudo mkfs.vfat -F 16 -n boot /dev/loop40p1
 sudo mkfs.ext4  -L rootfs /dev/loop40p2
 
-sudo mount /dev/loop40p1 sdcard/
-sudo mount /dev/loop40p2 sdcard/
 
-sudo umount /dev/loop40p1 
-sudo umount /dev/loop40p2 
+sudo mount /dev/loop40p1 sdcard/boot
+sudo mount /dev/loop40p2 sdcard/rootfs
+
+sudo umount /home/nahass/source/sdcard/boot
+sudo umount /home/nahass/source/sdcard/rootfs
+
+ 
 sudo losetup -d /dev/loop40 # -d deattached
 
 ```
