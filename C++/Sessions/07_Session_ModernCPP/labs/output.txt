@@ -1,0 +1,2 @@
+       Sum       Avg       Min       Max
+        31      5.17         1         7
