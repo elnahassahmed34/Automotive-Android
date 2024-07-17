@@ -112,7 +112,11 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "typeinfo": "cpp",
-    "iomanip": "cpp"
+    "iomanip": "cpp",
+    "lab1_cpp": "c",
+    "ctime": "c",
+    "fstream": "c",
+    "sstream": "c"
   },
   "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
