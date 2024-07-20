@@ -46,6 +46,12 @@ int main(){
 - protected
 - protected
 
+# override concept
+- polymorphism
+- virtual keyword between base and derive which creat virtual table 
+
+## pure virtual function and abstracted class
+
 
 
 
