@@ -117,6 +117,104 @@ sudo ln -s busybox init
 sudo ln -s busybox sh
 
 setenv bootargs "console=tty0 console=ttyAMA0,38400n8 root=/dev/mmcblk0p2 rw init=sh" 
+```
+
+## root FS
+/bin
+/sbin
+/usr/bin /sbin /lib
+/etc/inittab
+```
+# inittab file 
+::sysinit:/etc/init.d/rcS
+# Start an "askfirst" shell on the console (whatever that may be)
+ttyAMA0::askfirst:-/bin/sh
+# Stuff to do when restarting the init process
+::restart:/sbin/init
+```
+/etc/init.rd/rcs
+```
+mount -t devtmpfs   /dev 
+mount -t sysfs      /sys 
+mount -t procfs     /proc 
+```
+/dev
+/proc
+/sys
+
+
+### command
+```
+rsync -a ~/busybox/_install /media/rootfs
+rsync -a ~/xtools/arm/lib/sysroot /media/rootfs
+
+```
+
+### steps
+```
+mkdir rootfs
+
+cp -rp ./busybox/_install/* ./rootfs
+
+sudo rsync -a ./x-tools/arm-cortexa9_neon-linux-musleabihf/arm-cortexa9_neon-linux-musleabihf/sysroot/* ./rootfs/
+
+cd rootfs
+
+sudo chown -R root:root *
+
+mkdir -p ./dev ./etc
+
+touch ./etc/inittab
+
+mkdir proc sys
+
+mkdir mnt boot home media root srv
 
 
 ```
+
+- vim ./etc/inittab
+```
+
+# inittab file 
+::sysinit:/etc/init.d/rcS
+
+# Start an "askfirst" shell on the console (whatever that may be)
+ttyAMA0::askfirst:-/bin/sh
+
+# Stuff to do when restarting the init process
+::restart:/sbin/init
+```
+
+
+## etc/init.d/rcS
+```
+mkdir ./etc/init.d
+cd ./etc/init.d
+vim rcS    
+```
+
+add the following content to this script 
+```
+#!/bin/sh
+# mount a filesystem of type `proc` to /proc
+mount -t proc nodev /proc
+# mount a filesystem of type `sysfs` to /sys
+mount -t sysfs nodev /sys
+```
+then make it excutable
+chmod 777 rcS
+
+## copy files to sdcard/rootfs
+sudo cp -r * ~/source/sdcard/rootfs/
+
+## from uboot
+
+editenv bootargs 
+edit: console=tty0 console=ttyAMA0,38400n8 root=/dev/mmcblk0p2 rw init=/sbin/init
+
+
+
+
+
+
