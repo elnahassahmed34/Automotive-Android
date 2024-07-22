@@ -35,11 +35,11 @@ ls -l configs/vex*
 
 copy vexpress_ca9x4_defconfig
 
-make vexpress_ca9x4_defconfig
 
 cat Makefile | grep CROSS 
 
 #we use export because make will open new processes
+make vexpress_ca9x4_defconfig
 export CROSS_COMPILE=arm-cortexa9_neon-linux-musleabihf- 
 export ARCH=arm
 
