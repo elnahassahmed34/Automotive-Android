@@ -26,12 +26,12 @@ make -j4 zImage modules dtbs
 output : arch/arm/boot
 
 ```
-
+## boot from mmc
 - copy zImage and vexpress-v2p-ca9.dtb to boot partition then 
 ```
 fatload mmc 0:1 $kernel_addr_r zImage
 fatload mmc 0:1 $fdt_addr_r vexpress-v2p-ca9.dtb
-bootz $kernel_addr_r $fdt_addr_r
+bootz $kernel_addr_r - $fdt_addr_r
 ```
 
 #### if you want to boot by extlinux
@@ -66,3 +66,16 @@ make -j4
 
 ```
 
+## booting from tftp
+```sh
+tftp $kernel_addr_r zImage
+
+tftp $fdt_addr_r vexpress-v2p-ca9.dtb
+
+md $kernel_addr_r
+
+md $fdt_addr_r
+
+bootz $kernel_addr_r - $fdt_addr_r
+
+```
