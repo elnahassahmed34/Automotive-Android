@@ -101,6 +101,7 @@ types of action
 ## menuconfig
 ```
 git clone https://github.com/mirror/busybox.git
+cd busybox
 make menuconfig
 # from settings choose -> Build static binary (no shared libs)
 
@@ -109,7 +110,7 @@ sudo gedit .config -> search for this paramater
 CONFIG_TC=n
 
 make install
-
+cd _install/bin
 sudo cp busybox /home/nahass/source/sdcard/rootfs
 
 sudo ln -s busybox init
