@@ -33,15 +33,15 @@ chroot /mnt/
 ```
 
 # Network file system
-
+```sh
 sudo apt install nfs-kernel-server
 sudo cp -r ~/source/rootfs/ /srv/nfs/
-
+```
 vim /etc/exports
 ```
 /srv/nfs/rootfs 192.168.1.10(rw,no_root_squash,no_subtree_check)
 sudo exportfs -r
 ```
 ```
-setenv bootargs console=ttyXXX root=/dev/nfs ip=192.168.1.10:::::eth0 nfsroot=192.168.1.8:/srv/rootfs,nfsvers=3,tcp rw init=/sbin/init
+setenv bootargs console=ttyXXX root=/dev/nfs ip=192.168.1.10:::::eth0 nfsroot=192.168.1.8:/srv/nfs/rootfs,nfsvers=3,tcp rw init=/sbin/init
 ```
