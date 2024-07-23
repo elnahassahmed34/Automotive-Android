@@ -132,7 +132,7 @@ ttyAMA0::askfirst:-/bin/sh
 # Stuff to do when restarting the init process
 ::restart:/sbin/init
 ```
-/etc/init.rd/rcs
+/etc/init.d/rcs
 ```
 mount -t devtmpfs   /dev 
 mount -t sysfs      /sys 
@@ -160,7 +160,6 @@ sudo rsync -a ./x-tools/arm-cortexa9_neon-linux-musleabihf/arm-cortexa9_neon-lin
 
 cd rootfs
 
-sudo chown -R root:root *
 
 mkdir -p ./dev ./etc
 
@@ -170,6 +169,7 @@ mkdir proc sys
 
 mkdir mnt boot home media root srv
 
+sudo chown -R root:root *
 
 ```
 
@@ -197,6 +197,8 @@ vim rcS
 add the following content to this script 
 ```
 #!/bin/sh
+# mount a filesystem of type `devtmpfs` to /dev
+mount -t devtmpfs nodev /dev
 # mount a filesystem of type `proc` to /proc
 mount -t proc nodev /proc
 # mount a filesystem of type `sysfs` to /sys
