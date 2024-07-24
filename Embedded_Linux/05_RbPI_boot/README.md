@@ -34,7 +34,7 @@
 ```
 kernel=u-boot.bin
 enable_uart=1
-device_tree=bcm2837-rpi-3-b-plus.dtb
+device_tree=bcm2837-rpi-3-b-plus.dtb # download it
 ```
 ## 6 edit cmdline.txt and add
 ```

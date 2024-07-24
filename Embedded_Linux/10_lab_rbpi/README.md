@@ -1,4 +1,4 @@
-# lab
+# lab -> last steps worked 
 
 ## fetch kernel + dtb by ftpt 
 ```
@@ -57,8 +57,21 @@ mount -t devtmpfs nodev /dev
 [   13.273526] platform 3f202000.mmc: deferred probe pending
 ```
 
+# This worked 
+```
+build 2709bcm_defconfig -> take this zimage
+bcm2710-rpi-3-b.dtb -> take this dtb
+```
 
-build 2709bcm_defconfig
+## another error occured
+```
+mounting devtmpfs is busy
+```
 
-cp arch/arm/boot/zImage /media/moatasem/rpi_boot
-sudo cp arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b.dtb /media/nahass/boot
+## changed rcS to the following and it worked
+```
+#!/bin/sh
+mount -t proc nodev /proc
+mount -t sysfs nodev /sys
+exec /bin/sh
+```
