@@ -32,6 +32,21 @@ ls /mnt
 chroot /mnt/
 ```
 
+### initramfs for rbpi
+- bdinfo
+- 0x30000000
+```
+setenv initramfs_addr 0x30000000
+
+fatload mmc 0:1 $kernel_addr_r zImage
+fatload mmc 0:1 $fdt_addr_r vexpress-v2p-ca9.dtb
+fatload mmc 0:1 $initramfs_addr uRamdisk
+setenv bootargs 8250.nr_uarts=1 console=ttyS0,115200 rdinit=/bin/sh
+
+bootz $kernel_addr_r $initramfs_addr $fdt_addr_r
+```
+
+
 # Network file system
 ```sh
 sudo apt install nfs-kernel-server
@@ -43,5 +58,5 @@ vim /etc/exports
 sudo exportfs -r
 ```
 ```
-setenv bootargs console=ttyXXX root=/dev/nfs ip=192.168.1.10:::::eth0 nfsroot=192.168.1.8:/srv/nfs/rootfs,nfsvers=3,tcp rw init=/sbin/init
+setenv bootargs console=ttyXXX root=/dev/nfs ip=192.168.1.40:::::eth0 nfsroot=192.168.1.50:/srv/nfs/rootfs,nfsvers=3,tcp rw init=/sbin/init
 ```

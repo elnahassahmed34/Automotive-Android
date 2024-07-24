@@ -58,9 +58,7 @@ git clone --depth=1 https://github.com/raspberrypi/linux
 export CROSS_COMPILE=arm-linux-gnueabihf-
 export ARCH=arm
 
-KERNEL=kernel8
-
-make bcm2711_defconfig
+make bcm2835_defconfig
 
 make -j4
 
