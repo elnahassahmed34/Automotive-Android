@@ -27,6 +27,7 @@ setenv bootargs console=ttyAMA0,115200 rdinit=/bin/sh
 bootz $kernel_addr_r $initramfs_addr $fdt_addr_r
 ```
 ```sh
+mount -t devtmpfs node /dev
 mount -t ext4 /dev/mmcblk0p2 /mnt/
 ls /mnt
 chroot /mnt/
@@ -58,5 +59,5 @@ vim /etc/exports
 sudo exportfs -r
 ```
 ```
-setenv bootargs console=ttyXXX root=/dev/nfs ip=192.168.1.40:::::eth0 nfsroot=192.168.1.50:/srv/nfs/rootfs,nfsvers=3,tcp rw init=/sbin/init
+setenv bootargs console=ttyXXX root=/dev/nfs ip=192.168.1.9:::::eth0 nfsroot=192.168.1.8:/srv/nfs/rootfs,nfsvers=3,tcp rw init=/sbin/init
 ```
