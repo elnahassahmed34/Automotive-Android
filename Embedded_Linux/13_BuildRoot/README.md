@@ -13,7 +13,7 @@ make raspberrypi3_defconfig
 
 
 
-## 3- edit configruations
+## 3- edit configruations -> make menuconfig
 ### qemu
 - search for dropbear
 - from system config. -> set root password (1234)
@@ -22,13 +22,14 @@ make raspberrypi3_defconfig
 ### rbpi
 - build init for system d
 - for rbpi -> from filesystem images -> change exact size to 250M
+- choose uboot -> add in defconfig rpi_3_32b_defconfig
 
 
 ## 4- build 
 - make -j4
 
 ## 5- start qemu
-qemu-system-arm -M vexpress-a9 -m 128M -sd output/image/sdcard.img -kernel output/image/u-boot.img -nograhic
+- run script from output/images/start-qemu.sh
 
 ## if you choose rbpi 3
 ### format
