@@ -14,9 +14,14 @@ make raspberrypi3_defconfig
 
 
 ## 3- edit configruations
+### qemu
 - search for dropbear
 - from system config. -> set root password (1234)
 - search for init -> choose system v
+
+### rbpi
+- build init for system d
+- for rbpi -> from filesystem images -> change exact size to 250M
 
 
 ## 4- build 
