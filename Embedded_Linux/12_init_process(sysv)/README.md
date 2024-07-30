@@ -99,7 +99,7 @@ while true
 
 ###### 5 - add this rc script in init.d 
 ```sh
-#!/bin/bash
+#!/bin/sh
 # Check if one argument is provided
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <runlevel>"

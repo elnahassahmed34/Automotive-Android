@@ -20,10 +20,11 @@ make raspberrypi3_defconfig
 - search for init -> choose system v
 
 ### if you want to ping
-- ip addr add 192.168.1.9/24 dev eth0
 - copy script which we created in uboot qemu-ifup
 - edit in start-qemu.sh to open tab
     - exec qemu-system-arm -M vexpress-a9 -smp 1 -m 256 -kernel zImage -dtb vexpress-v2p-ca9.dtb -drive file=rootfs.ext2,if=sd,format=raw -append "console=ttyAMA0,115200 rootwait root=/dev/mmcblk0"  -net tap,script=./qemu-ifup -net nic  ${EXTRA_ARGS} "$@"
+- ip addr add 192.168.1.9/24 dev eth0
+- ifconfig eth0 up
 
 
 
