@@ -25,7 +25,8 @@ make raspberrypi3_defconfig
     - exec qemu-system-arm -M vexpress-a9 -smp 1 -m 256 -kernel zImage -dtb vexpress-v2p-ca9.dtb -drive file=rootfs.ext2,if=sd,format=raw -append "console=ttyAMA0,115200 rootwait root=/dev/mmcblk0"  -net tap,script=./qemu-ifup -net nic  ${EXTRA_ARGS} "$@"
 - ip addr add 192.168.1.9/24 dev eth0
 - ifconfig eth0 up
-
+-ping 192.168.1.9
+-sudo ssh root@192.168.1.9
 
 
 

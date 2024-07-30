@@ -75,8 +75,8 @@ exit 0
 ##### 2- make symbolic link in runlevel 2
 mkdir rc2.d
 ```
-ln -s /etc/init.d/deamonapp ./etc/rc2.d/S1deamonapp.sh
-ln -s /etc/init.d/deamonapp ./etc/rc2.d/K1deamonapp.sh
+ln -s /etc/init.d/deamonapp /etc/rc2.d/S1deamonapp.sh
+ln -s /etc/init.d/deamonapp /etc/rc2.d/K1deamonapp.sh
 
 ```
 
