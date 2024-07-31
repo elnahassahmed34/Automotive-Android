@@ -67,3 +67,5 @@ bitbake -c menuconfig virtual/kernel
         - myapp.bb
 
 
+
+
