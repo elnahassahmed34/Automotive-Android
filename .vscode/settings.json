@@ -116,7 +116,9 @@
     "lab1_cpp": "c",
     "ctime": "c",
     "fstream": "c",
-    "sstream": "c"
+    "sstream": "c",
+    "init.h": "c",
+    "module.h": "c"
   },
   "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
