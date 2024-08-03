@@ -17,5 +17,16 @@
 
 1. create device file -> dev_t
 2. allocate memroty(number) for this device
-3. 
+3. create entry under /sys/class -> class create
+4. create entry under /dev  -> device create
+5. register device in VFS (subsytem) -> cdev init + add
+    - echo 1 > /dev/file ->>> system call(major , minor) -> VFS 
+    - VFS -> (major -> driver1) + (minor -> device)
+        - driver1_write(int minor);
 
+    - VFS -> looks up for inode struct -> contains dev_t
+    - use major num to use device driver (cdev -> object for our driver)
+    - VFS create file struct with fops -> maps to file operation struct
+    - VFS pass inode and file structs as paramters in open and close callbacks
+
+![my_image](image1.png)
