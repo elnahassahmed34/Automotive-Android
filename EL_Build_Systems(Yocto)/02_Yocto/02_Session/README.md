@@ -101,24 +101,32 @@ bitbake example
 2. create build env
 
 
-## Task
-1. create env
-2. create layer
-3. create recipe
-4. edit in recipe
-    - if (var == 3)
-        - display "hi"
-    - else
-        - display "myfriend"
-5. in layer.conf add this var    
-6. do it with two methods 
-    - bb.append
-    - or if condition with python
--
+## Task -> .bbappend
+1. add this var in layer.conf
+```
+MY_CUSTOM_VAR ?= "1"
+```
 
+2. BBappend file
+``` 
+touch meta-iti/recipes-example/example/example_0.1.bbappend
+```
+```
+# example_0.1.bbappend
 
+python __anonymous() {
+    var_value = d.getVar('MY_CUSTOM_VAR')
+    if var_value == "0":
+        d.appendVar('do_display_banner', '\n    bb.plain("hi nahass")\n')
+    elif var_value == "1":
+        d.appendVar('do_display_banner', '\n    bb.plain("hi my friend")\n')
+}
+```
 
-
+3. test it with var 0 and 1
+```
+bitbake example
+```
 
 
 
