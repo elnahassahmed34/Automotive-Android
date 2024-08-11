@@ -87,3 +87,49 @@
 - configure cmake in do_configure
 - then in compile use make
 - check how make file used in yocto
+
+```cmake
+
+SUMMARY = "CMake example recipe"
+DESCRIPTION = "Recipe to build a C project using CMake"
+LICENSE = "MIT"
+
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+
+SRC_URI = "git://github.com/FadyKhalil/DemoApp.git;protocol=https;branch=main"
+
+SRCREV = "720c663c5fd7246b4b42c5205d74db7d9784b5b2"
+
+S = "${WORKDIR}/git"
+
+inherit cmake
+
+# Configure CMake
+do_configure() {
+    cmake -S ${S} -B ${B}
+}
+
+# Compile the project using Make
+do_compile() {
+    oe_runmake -C ${B}
+}
+
+# Install the compiled binaries
+do_install() {
+    # Ensure the destination directory exists
+    mkdir -p ${D}${bindir}
+    
+    # Copy the installed files to the destination directory
+    install -m 0755 ${B}/calculator ${D}${bindir}/
+}
+
+# Optionally, specify additional dependencies
+DEPENDS += "cmake"
+```
+
+- D -> ~/source/poky/build/tmp/work/core2-64-poky-linux/google/0.1-r0/image/usr/bin/calculator
+- B -> ~/source/poky/build/tmp/work/core2-64-poky-linux/google/0.1-r0/build$ 
+```sh
+ls
+calculator  CMakeCache.txt  CMakeFiles  cmake_install.cmake  lib  Makefile
+```

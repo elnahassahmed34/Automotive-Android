@@ -196,3 +196,12 @@ javac  mypkg/hello.java
 
 java mypkg.HelloWorld
 ```
+
+## Summary
+- javac: Compiles Java source code into platform-independent bytecode stored in .class files.
+- JVM: Executes the bytecode, providing a platform-independent runtime environment.
+- JRE: Includes the JVM and standard libraries needed to run Java programs.
+- JDK: A complete toolkit for Java development, including the JRE and additional tools like the compiler.
+- This process of compiling to bytecode and running on the JVM is what enables Java's portability and broad compatibility across different platforms.
+- JDK = JRE(JVM + libs) + javac + others
+    - JDK = toolchain or SDK
