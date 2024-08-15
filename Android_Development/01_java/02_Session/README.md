@@ -139,3 +139,17 @@ class Main{
     - child has more properties than parent
     - compilation error
 
+
+## Aggregation , composition , Assosiation
+
+- Compmpostion :
+    - from the start there will creation of objoct
+    - A has B
+
+- Aggregation : 
+    - there is intance member object (ownership)
+    - then in another method there will be creation
+
+- Assosiation :
+    - A uses b
+    - it will be sent as local var to method
