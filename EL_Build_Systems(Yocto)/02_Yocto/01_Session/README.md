@@ -67,5 +67,13 @@ bitbake -c menuconfig virtual/kernel
         - myapp.bb
 
 
+```
 
+SOURCES = "/home/nahass/source/poky/build"
+SSTATE_DIR ?= "${SOURCES}/sstate-cache"
+DL_DIR ?= "${SOURCES}/downloads"
+TMPDIR = "${SOURCES}/tmp"
+
+
+```
 
