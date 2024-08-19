@@ -48,3 +48,51 @@ bitbake -c populate_sdk core-image-sato
 ```
 - $BUILDDIR/tmp/deploy/sdk
 
+- leave the default config
+```sh
+./poky-glibc-x86_64-core-image-sato-cortexa53-raspberrypi3-64-toolchain-4.0.20.sh 
+```
+
+-cd /opt/poky/4.0.20/
+- ls
+```
+environment-setup-cortexa53-poky-linux  site-config-cortexa53-poky-linux  sysroots  version-cortexa53-poky-linux
+```
+
+## first method : using recipe
+```
+SUMMARY = "LED Control Qt5 Widget Application"
+DESCRIPTION = "A simple Qt5 widget application to control an LED on a Raspberry Pi"
+LICENSE = "CLOSED"
+
+SRC_URI = "file://main.cpp \
+           file://mainwindow.cpp \
+           file://mainwindow.ui \
+           file://rbpi.pro"
+
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+
+DEPENDS += "qtbase qttools"
+
+inherit cmake qt5
+
+S = "${WORKDIR}/git"
+
+do_configure() {
+    qmake
+}
+
+do_compile() {
+    oe_runmake
+}
+
+do_install() {
+    install -d ${D}${bindir}
+    install -m 0755 ${B}/ledcontrol ${D}${bindir}
+}
+
+FILES_${PN} += "${bindir}/ledcontrol"
+```
+
+## second method using sdk
+

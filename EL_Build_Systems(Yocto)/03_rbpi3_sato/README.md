@@ -12,6 +12,7 @@ SOURCES = "/home/nahass/source/poky/build"
 SSTATE_DIR ?= "${SOURCES}/sstate-cache"
 DL_DIR ?= "${SOURCES}/downloads"
 TMPDIR = "${SOURCES}/tmp"
+MACHINE ??= "raspberrypi3-64" 
 ```
 
 - add sysd and dropbear
