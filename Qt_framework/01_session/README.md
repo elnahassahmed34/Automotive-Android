@@ -69,3 +69,12 @@ int main(int argc, char *argv[])
 - extract moc objects
 - link those with main.c
 
+
+## QML + (C++)
+- QML -> front end -> signal
+    - it uses quick
+- c++ -> backend -> slots
+- qt quick controls
+
+
+
