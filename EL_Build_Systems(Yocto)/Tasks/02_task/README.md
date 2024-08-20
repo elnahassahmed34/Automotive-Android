@@ -68,7 +68,7 @@ LICENSE = "CLOSED"
 SRC_URI = "file://main.cpp \
            file://mainwindow.cpp \
            file://mainwindow.ui \
-           file://rbpi.pro"
+           file://rbpiqt.pro"
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
@@ -88,10 +88,10 @@ do_compile() {
 
 do_install() {
     install -d ${D}${bindir}
-    install -m 0755 ${B}/ledcontrol ${D}${bindir}
+    install -m 0755 ${B}/rbpiqt ${D}${bindir}
 }
 
-FILES_${PN} += "${bindir}/ledcontrol"
+FILES_${PN} += "${bindir}/rbpiqt"
 ```
 
 ## second method using sdk

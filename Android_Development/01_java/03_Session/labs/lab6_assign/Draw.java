@@ -1,21 +1,15 @@
-class Main {
-    public static void main(String[] args) {
-        int rows = 5;
-
-        for (int i = 1; i <= rows; ++i) {
-            
-            for (int j = 0; j < i; ++j) {
-                System.out.print("*");
-            }
-
-            for (int space = 1; space <= rows - i; ++space) {
-                System.out.print("  ");
-            }
-            for (int k = 0; k < i ; ++k) {
-                System.out.print(" *");
-            }
-
-            System.out.println();
-        }
-    }
+class Pattern {
+	public static void main (String[] args){
+		String str1 = new String("*");
+		String str2 = new String("          *");
+String str=str1;
+String strr=str2;
+	for (int i =0;i<5;i++)
+	{
+		System.out.println(str + strr);
+		str+=str1;
+		strr=strr.substring(2);
+		strr+=" *";
+	}		
+	}	
 }
