@@ -74,7 +74,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ad
 
 DEPENDS += "qtbase qttools"
 
-inherit cmake qt5
+inherit cmake 
 
 S = "${WORKDIR}/git"
 

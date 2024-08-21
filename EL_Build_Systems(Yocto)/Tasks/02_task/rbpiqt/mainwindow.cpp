@@ -17,8 +17,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_onButton_clicked()
 {
     system("echo 2 > /sys/class/gpio/export");
-    system("echo out > /sys/class/gpio/gpio17/direction");
-    system("echo 1 > /sys/class/gpio/gpio17/value");
+    system("echo out > /sys/class/gpio/gpio2/direction");
+    system("echo 1 > /sys/class/gpio/gpio2/value");
 }
 
 

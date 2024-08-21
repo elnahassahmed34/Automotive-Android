@@ -171,6 +171,21 @@ int main() {
         - who will call it should handle this exception
     - catch and throw another exception
 
+### sevral exceptions
+- sevral tries and catchs
+- one try sevral catch
+- one try and one catch parent of all exceptions
+
+### overriding
+- same signature
+- throw same exception
+- throw child exception
+- not throwing
+- but not throw a diff exception
+
+### try with resource
+-try (BufferedReader br = new BufferedReader(new FileReader("C:\\testing.txt"))) 
+
 - Error
     - out of memory
     - stack overflow
