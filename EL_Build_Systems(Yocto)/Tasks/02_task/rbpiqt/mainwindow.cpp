@@ -25,5 +25,6 @@ void MainWindow::on_onButton_clicked()
 void MainWindow::on_offButton_clicked()
 {
     system("echo 0 > /sys/class/gpio/gpio17/value");
+    system("echo 2 > /sys/class/gpio/unexport");
 }
 

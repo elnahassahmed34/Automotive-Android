@@ -59,7 +59,7 @@ bitbake -c populate_sdk core-image-sato
 environment-setup-cortexa53-poky-linux  site-config-cortexa53-poky-linux  sysroots  version-cortexa53-poky-linux
 ```
 
-## first method : using recipe
+## first method : using recipe (update) this recipe worked
 ```
 SUMMARY = "LED Control Qt5 Widget Application"
 DESCRIPTION = "A simple Qt5 widget application to control an LED on a Raspberry Pi"
@@ -67,23 +67,23 @@ LICENSE = "CLOSED"
 
 SRC_URI = "file://main.cpp \
            file://mainwindow.cpp \
+           file://mainwindow.h \
            file://mainwindow.ui \
-           file://rbpiqt.pro"
+           file://rbpiqt.pro \
+           file://rbpiqt.pro.user"
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 DEPENDS += "qtbase qttools"
 
-inherit cmake 
+inherit qmake5
 
-S = "${WORKDIR}/git"
+S = "${WORKDIR}"
 
-do_configure() {
-    qmake
-}
 
 do_compile() {
-    oe_runmake
+    oe_runmake -C ${B}
+
 }
 
 do_install() {
@@ -93,6 +93,22 @@ do_install() {
 
 FILES_${PN} += "${bindir}/rbpiqt"
 ```
+### connect rbpi to screnn
+```
+cd /usr/bin
+sudo ./rbpiqt
+```
+- connect a led to ground(third pin) and gpio2(second pin) 
 
 ## second method using sdk
-
+- from edit -> prefrence 
+- add 
+- run device type = remote
+- compiler
+-   use the compilers from sdk
+    - /opt/poky/4.0.20/sysroots/x86_64-pokysdk-linux/usr/bin
+- configure gcc and g++
+- configure qmake and cmake
+- build and deploy -> 192.168.1.51
+- for more info. about this method check this repo
+    - https://github.com/anaskhamees/ITI44_GP/blob/main/README.md
