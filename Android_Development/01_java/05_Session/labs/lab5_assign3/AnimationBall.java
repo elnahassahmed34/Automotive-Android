@@ -1,35 +1,63 @@
 import java.applet.Applet;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
+public class AnimationBall extends Applet implements Runnable {
 
-
-public class AnimationBall extends Applet implements Runnable{
-
-    public void init(){
-        Thread th = new Thread(this);
-        th.start();
-
+        
+    int Width = 40 , height = 40, size = 18;
+    boolean moveRight = true;
+    boolean moveDown = true;
+    public void init()
+    {
+       Thread myThread = new Thread(this);
+        myThread.start(); 
     }
 
     public void paint(Graphics g) {
-
-        for(int x = 0 ; x < 500 ; x+=2){
-            for(int y = 0 ; y < 500 ; y+=2){
-                g.clearRect(0, 0, getWidth(), getHeight());
-                g.fillOval(y, x, 60, 100); 
-            }
-        }
-        
+        super.paint(g);
+        g.fillOval(Width, height, 20, 20);
     }
 
-    public void run(){
-        while(true){
+    public void run()
+    {
+        while(true)
+        {
             try{
-                
-                Thread.sleep(1000);
-                repaint();
+            repaint();
+
+            if (moveRight) {
+                Width += 10; 
+                if (Width >= getWidth() - 20) {
+                    moveRight = false; 
+                }
+            } else {
+                Width -= 10; 
+                if (Width <= 0) {
+                    moveRight = true; 
+                }
             }
-            catch(InterruptedException ie){ie.printStackTrace();}
+
+            if (moveDown) {
+                height += 10; 
+                if (height >= getHeight() - 20) {
+                    moveDown = false; 
+                }
+            } else {
+                height -= 10;
+                if (height <= 0) {
+                    moveDown = true; 
+                }
+            }
+                Thread.sleep(100);
+            }
+            catch (InterruptedException e) 
+            { 
+                e.printStackTrace();
+            }
+            
+
         }
     }
 }
