@@ -6,7 +6,6 @@ public class TimeApplet extends Applet {
 
     private TimeUpdater timeThread;
 
-    @Override
     public void init() {
         timeThread = new TimeUpdater();
         timeThread.start();
@@ -18,9 +17,8 @@ public class TimeApplet extends Applet {
         g.drawString(d.toString(), getWidth() / 2, getHeight() / 2);
     }
 
-    // Inner class extending Thread
     private class TimeUpdater extends Thread {
-        @Override
+    
         public void run() {
             while (true) {
                 try {

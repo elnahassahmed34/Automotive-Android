@@ -1,4 +1,4 @@
-#include <QCoreApplication>
+naha#include <QCoreApplication>
 #include "child.h"
 #include "parent.h"
 #include <QObject>
