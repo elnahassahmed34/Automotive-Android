@@ -277,9 +277,11 @@ public class HelloWorld extends Application{
 ## install netbeans
 
 ### download 
+
 https://dlc-cdn.sun.com/netbeans/8.2/final/bundles/netbeans-8.2-javaee-linux.sh
 
 ```sh
+
 sudo apt-get install libcanberra-gtk-module libcanberra-gtk3-module
 
 sudo apt-get install openjdk-8-jdk
@@ -292,7 +294,7 @@ sudo apt-get install openjdk-8-jdk
 https://www.oracle.com/eg/java/technologies/javase/javase8-archive-downloads.html
 ## extract then move it to /opt
 
-## download scene builder -> not 8.5
+## download scene builder -> note 8.5
 https://gluonhq.com/products/scene-builder/
 Scene Builder	Linux Deb 64-bit
 
