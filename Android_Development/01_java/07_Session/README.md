@@ -288,6 +288,30 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
 ./netbeans-8.2-javaee-linux.sh 
+
+##download -> jdk-8u202-linux-x64.tar.gz
+https://www.oracle.com/eg/java/technologies/javase/javase8-archive-downloads.html
+## extract then move it to /opt
+
+## download scene builder -> not 8.5
+https://gluonhq.com/products/scene-builder/
+Scene Builder	Linux Deb 64-bit
+
+
+## move netbeans from home to /opt
+
+ls /opt/
+jdk1.8.0_202            
+netbeans-8.2  SceneBuilder  
+
+
+export JAVA_HOME=/opt/jdk1.8.0_202
+export PATH=$JAVA_HOME/bin:$PATH
+
+## run netbeans
+/opt/netbeans-8.2/bin$ 
+./netbeans
+
 ```
 
 
