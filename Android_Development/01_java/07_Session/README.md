@@ -284,8 +284,7 @@ sudo apt-get install libcanberra-gtk-module libcanberra-gtk3-module
 
 sudo apt-get install openjdk-8-jdk
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export PATH=$JAVA_HOME/bin:$PATH
+
 
 ./netbeans-8.2-javaee-linux.sh 
 
