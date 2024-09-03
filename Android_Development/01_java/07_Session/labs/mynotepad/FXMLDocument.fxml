@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mynotepad.FXMLDocumentController">
+   <top>
+      <MenuBar id="menuBar" fx:id="menuBar" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu id="fileMenu" fx:id="fileMenu" mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem id="mnuitmNew" fx:id="mnuitmNew" mnemonicParsing="false" text="New">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="mnuitmOpenLL" mnemonicParsing="false" text="Open Low Level" />
+                  <MenuItem id="mnuitmOpenHL" fx:id="mnuitmOpenHL" mnemonicParsing="false" text="Open High Level">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem id="mnuitmSaveLL" fx:id="mnuitmSaveLL" mnemonicParsing="false" text="Save Low Level" />
+                  <MenuItem id="mnuitmSaveHL" fx:id="mnuitmSaveHL" mnemonicParsing="false" text="Save High Level">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+              <MenuItem id="mnuitmExit" fx:id="mnuitmExit" mnemonicParsing="false" text="Exit">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+            </items>
+          </Menu>
+          <Menu id="editMenu" fx:id="editMenu" mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem id="mnuitmCut" fx:id="mnuitmCut" mnemonicParsing="false" text="Cut">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem id="mnuitmCopy" fx:id="mnuitmCopy" mnemonicParsing="false" text="Copy">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem id="mnuitmPaste" fx:id="mnuitmPaste" mnemonicParsing="false" text="Paste">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+              <MenuItem id="mnuitmDelete" fx:id="mnuitmDelete" mnemonicParsing="false" text="Delete" />
+                  <MenuItem id="mnuitmSelectAll" fx:id="mnuitmSelectAll" mnemonicParsing="false" text="Select All">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+          </Menu>
+          <Menu id="helpMenu" fx:id="helpMenu" mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem id="mnuitmAbout" fx:id="mnuitmAbout" mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <TextArea prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
