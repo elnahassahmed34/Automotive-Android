@@ -7,35 +7,29 @@ public class PaintBrush extends Applet {
     private String currentShape = "Freehand";
     private boolean filled = false;
 
-    private Shape[] shapes = new Shape[100]; // Stores drawn shapes
+    private Shape[] shapes = new Shape[100]; 
     private int shapeCount = 0;
 
     private int startX, startY, endX, endY;
 
-    @Override
     public void init() {
-        setLayout(new FlowLayout());
 
         addColorButton("Red", Color.RED);
         addColorButton("Green", Color.GREEN);
         addColorButton("Blue", Color.BLUE);
 
-        // Shape buttons
         addShapeButton("Rectangle");
         addShapeButton("Oval");
         addShapeButton("Line");
 
-        // Freehand button
         Button freehandBtn = new Button("Freehand");
         freehandBtn.addActionListener(e -> currentShape = "Freehand");
         add(freehandBtn);
 
-        // Eraser button
         Button eraserBtn = new Button("Eraser");
         eraserBtn.addActionListener(e -> currentShape = "Eraser");
         add(eraserBtn);
 
-        // Clear All button
         Button clearAllBtn = new Button("Clear All");
         clearAllBtn.addActionListener(e -> {
             shapeCount = 0;
@@ -43,12 +37,10 @@ public class PaintBrush extends Applet {
         });
         add(clearAllBtn);
 
-        // Filled checkbox
         Checkbox filledChk = new Checkbox("Filled");
         filledChk.addItemListener(e -> filled = filledChk.getState());
         add(filledChk);
 
-        // Mouse listeners
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 startX = e.getX();
@@ -93,7 +85,6 @@ public class PaintBrush extends Applet {
         }
     }
 
-    @Override
     public void paint(Graphics g) {
         for (int i = 0; i < shapeCount; i++) {
             shapes[i].draw(g);
