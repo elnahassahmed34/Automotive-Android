@@ -257,3 +257,7 @@
     - bundle is package -> data saved in it as key value states
     - android saves changes for user in this bundle
 - then android load the bundle again
+
+
+## 
+
