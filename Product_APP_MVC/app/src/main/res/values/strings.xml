@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Product_APP_MVC</string>
+    <string name="app_name">Neso Ketchin</string>
 
     <string-array name="search_types">
         <item>Category</item>

@@ -1,4 +1,4 @@
-package com.example.luluchef.database;
+package com.example.product_app_mvc.DB;
 
 import androidx.room.TypeConverter;
 

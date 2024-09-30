@@ -68,24 +68,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_ingredients" />
 
-        <VideoView
-            android:id="@+id/video_view"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_steps" />
-
         <Button
             android:id="@+id/btn_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="12dp"
             android:text="Add to Favorites"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/video_view" />
+            app:layout_constraintTop_toBottomOf="@+id/webView" />
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="409dp"
+            android:layout_height="222dp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_steps"
+            tools:layout_editor_absoluteX="19dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -11,6 +11,7 @@ public class POJO_class {
     @PrimaryKey
     @NonNull
     private String idMeal;
+    public String strYoutube;
     private String strMeal;
     private String strCategory;
     private String strArea;
@@ -111,6 +112,13 @@ public class POJO_class {
     //            '}' + "\n";
     //}
 
+    public String getStrYoutube() {
+        return strYoutube;
+    }
+
+    public void setStrYoutube(String strYoutube) {
+        this.strYoutube = strYoutube;
+    }
 
 }
 
