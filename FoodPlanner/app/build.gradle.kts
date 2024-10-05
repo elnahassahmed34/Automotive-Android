@@ -47,4 +47,9 @@ dependencies {
     implementation (libs.room.runtime)
     annotationProcessor (libs.room.compiler)
     implementation (libs.room.ktx)
+    implementation ("com.airbnb.android:lottie:6.1.0")
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.22")
+    implementation ("com.google.firebase:firebase-firestore:25.1.0")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.8.1")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.8.1")
 }

@@ -1,5 +1,7 @@
 package com.example.product_app_mvc.model;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 
 import com.example.product_app_mvc.DB.ProductsLocalDataSourceImpl;
@@ -39,6 +41,11 @@ public class ProductsRepositoryImpl implements ProductsRepository{
         myProductsRemoteDataSourceImpl.fetchAndStoreProducts(L_NetworkCallback);
     }
 
+    public void getMealDetails(NetworkCallback L_NetworkCallback, int mealID) {
+        myProductsRemoteDataSourceImpl.fetchMealDetails(L_NetworkCallback, mealID);
+    }
+
+
     @Override
     public void insertProduct(POJO_class L_POPojoClass) {
         myProductsLocalDataSourceImpl.insert(L_POPojoClass);
@@ -48,4 +55,25 @@ public class ProductsRepositoryImpl implements ProductsRepository{
     public void deleteProduct(POJO_class L_POPojoClass) {
         myProductsLocalDataSourceImpl.delete(L_POPojoClass);
     }
+
+    @Override
+    public void searchMealbyIngredient(NetworkCallback L_NetworkCallback, String prompt) {
+        myProductsRemoteDataSourceImpl.searchForMealbyIngredient(L_NetworkCallback, prompt);
+    }
+
+    @Override
+    public void searchMealbyCountry(NetworkCallback L_NetworkCallback, String prompt) {
+        myProductsRemoteDataSourceImpl.searchForMealbyCountry(L_NetworkCallback , prompt);
+    }
+
+    @Override
+    public void searchMealbyCategory(NetworkCallback L_NetworkCallback, String prompt) {
+        Log.i("TAG", "4434234r23r2r23");
+        myProductsRemoteDataSourceImpl.searchForMealbyCategory(L_NetworkCallback , prompt);
+    }
+
+    public void fetchCategory(NetworkCallback myNetworkCallback){
+        myProductsRemoteDataSourceImpl.fetchcategory(myNetworkCallback);
+    }
+
 }

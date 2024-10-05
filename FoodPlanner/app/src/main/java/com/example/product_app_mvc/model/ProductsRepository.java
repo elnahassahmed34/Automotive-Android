@@ -14,7 +14,18 @@ public interface ProductsRepository {
 
     public void getAllProducts(NetworkCallback L_NetworkCallback);
 
+    public void getMealDetails(NetworkCallback L_NetworkCallback, int mealID);
+
+
     public void insertProduct(POJO_class L_POPojoClass);
 
     public void deleteProduct(POJO_class L_POPojoClass);
+
+    public void searchMealbyIngredient(NetworkCallback L_NetworkCallback, String prompt);
+
+    public void searchMealbyCountry(NetworkCallback L_NetworkCallback, String prompt);
+
+    public void searchMealbyCategory(NetworkCallback L_NetworkCallback, String prompt);
+
+    public void fetchCategory(NetworkCallback myNetworkCallback);
 }

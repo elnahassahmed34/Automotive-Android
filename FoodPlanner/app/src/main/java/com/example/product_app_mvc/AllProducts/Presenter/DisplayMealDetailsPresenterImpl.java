@@ -5,6 +5,8 @@ import android.widget.Toast;
 
 import com.example.product_app_mvc.AllProducts.Viewer.Viewer.MealDetailsView;
 import com.example.product_app_mvc.Network.NetworkCallback;
+import com.example.product_app_mvc.model.Category;
+import com.example.product_app_mvc.model.CategoryResponse;
 import com.example.product_app_mvc.model.ProductsRepository;
 import com.example.product_app_mvc.model.POJO_class;
 
@@ -38,6 +40,16 @@ public class DisplayMealDetailsPresenterImpl implements DisplayMealDetailsPresen
 
     @Override
     public void onFailureResult(String ErrorMsg) {
+
+    }
+
+    @Override
+    public void onSuccessResultcat(List<Category> Categries) {
+
+    }
+
+    @Override
+    public void onFailureResultcat(String ErrorMsg) {
 
     }
 }

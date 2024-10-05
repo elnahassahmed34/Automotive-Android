@@ -3,7 +3,6 @@ package com.example.product_app_mvc.FavProducts.View;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -14,8 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.product_app_mvc.DB.ProductsLocalDataSourceImpl;
-//import com.example.product_app_mvc.FavProductAdapter;
-//import com.example.product_app_mvc.FavProducts.FavProductAdapter;
 import com.example.product_app_mvc.FavProducts.Presenter.FavoritePresenter;
 import com.example.product_app_mvc.FavProducts.Presenter.FavoritePresenterImpl;
 import com.example.product_app_mvc.Network.ProductsRemoteDataSourceImpl;
@@ -28,53 +25,47 @@ import java.util.List;
 public class FavProductActivity extends AppCompatActivity implements if_DeleteFavProduct, FavView {
 
     RecyclerView myRecyclerView;
-
     LiveData<List<POJO_class>> MyFavProducts;
-    ProductsLocalDataSourceImpl repo;
 
-    //===========================
+    // Adapter and Presenter
     FavProductAdapter myfavAdapter;
     FavoritePresenter myFavoritePresenter;
-    //===========================
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_fav_main);
 
-        //repo = ProductsLocalDataSourceImpl.getInstance(this);
-        //MyFavProducts =  repo.getStoredData();
-
-       // Log.i("TAG", MyFavProducts);
-
+        // Initialize the RecyclerView
         myRecyclerView = findViewById(R.id.fav_myRecyclerView);
         myRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         myRecyclerView.setLayoutManager(layoutManager);
 
+        // Initialize the presenter with the repository
+        myFavoritePresenter = new FavoritePresenterImpl(this,
+                ProductsRepositoryImpl.getInstance(
+                        ProductsRemoteDataSourceImpl.getInstance(this),
+                        ProductsLocalDataSourceImpl.getInstance(this)
+                )
+        );
 
-        myFavoritePresenter = new FavoritePresenterImpl(this, ProductsRepositoryImpl.getInstance(ProductsRemoteDataSourceImpl.getInstance(this), ProductsLocalDataSourceImpl.getInstance(this)));
-
-        myfavAdapter = new FavProductAdapter(this , this);
-
-        MyFavProducts = myFavoritePresenter.getAllProducts();
-
+        // Initialize the adapter
+        myfavAdapter = new FavProductAdapter(this, this);
         myRecyclerView.setAdapter(myfavAdapter);
 
-        // Observe LiveData and update adapter
+        // Get the favorite products and observe for changes
+        MyFavProducts = myFavoritePresenter.getAllProducts();
         MyFavProducts.observe(this, new Observer<List<POJO_class>>() {
             @Override
             public void onChanged(List<POJO_class> pojoClasses) {
-                myfavAdapter.setadapter(pojoClasses);
+                // Update the adapter when the data changes
+                myfavAdapter.setAdapter(pojoClasses);
             }
         });
 
-
-
-
-
-
+        // Apply insets (if needed for UI styling)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fav_row), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -84,12 +75,13 @@ public class FavProductActivity extends AppCompatActivity implements if_DeleteFa
 
     @Override
     public void onFavdeleteclick(POJO_class favProduct) {
-        repo.delete(favProduct);
-        Toast.makeText(this,"Deleted" , Toast.LENGTH_SHORT).show();
+        // Use the presenter to handle the deletion logic
+        myFavoritePresenter.removeFromFav(favProduct);
+        Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showProducts(List<POJO_class> l_list) {
-
+        // Optional: you can implement this method to handle product displaying, but currently handled via LiveData
     }
 }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+
+    <!-- Image View at the top -->
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="378dp"
+        android:layout_height="387dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.9"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <!-- Random Button -->
+    <Button
+        android:id="@+id/btnShowAll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Random"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnShowFavs"
+        app:layout_constraintWidth_percent="0.45"
+        android:layout_margin="8dp" />
+
+    <!-- Show Favorites Button -->
+    <Button
+        android:id="@+id/btnShowFavs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Show Favorites"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/btnShowAll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.45"
+        android:layout_margin="8dp" />
+
+    <!-- Search Button -->
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowAll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnLists"
+        app:layout_constraintWidth_percent="0.45"
+        android:layout_margin="8dp" />
+
+    <!-- Lists Button -->
+    <Button
+        android:id="@+id/btnCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowFavs"
+        app:layout_constraintStart_toEndOf="@+id/btnSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.45"
+        android:layout_margin="8dp" />
+
+    <!-- Calendar Button -->
+
+    <!-- Close Button -->
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="218dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="140dp"
+        android:text="Close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCategory"
+        app:layout_constraintWidth_percent="0.45" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

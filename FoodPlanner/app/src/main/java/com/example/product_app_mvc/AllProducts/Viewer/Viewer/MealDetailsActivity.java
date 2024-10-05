@@ -1,8 +1,14 @@
 package com.example.product_app_mvc.AllProducts.Viewer.Viewer;
 
+
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,8 +31,12 @@ import com.example.product_app_mvc.model.ProductsRepositoryImpl;
 import com.example.product_app_mvc.model.POJO_class;
 
 import java.util.List;
+
+
+
 public class MealDetailsActivity extends AppCompatActivity implements MealDetailsView, if_AddFavProduct {
 
+    private static final String YOUTUBE_PREFIX = "https://www.youtube.com/";
     private TextView txt_meal_name;
     private ImageView img_meal;
     private TextView txt_origin_country;
@@ -34,6 +44,7 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
     private TextView txt_ingredients;
     private VideoView video_view;
     private Button btn_favorite;
+    private WebView webView ;
 
     DisplayMealDetailsPresenterImpl myDisplayMealDetailsPresenterImpl;
 
@@ -49,7 +60,7 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
         txt_origin_country = findViewById(R.id.txt_origin_country);
         txt_steps = findViewById(R.id.txt_steps);
         txt_ingredients = findViewById(R.id.txt_ingredients);
-        video_view = findViewById(R.id.video_view);
+        webView = findViewById(R.id.webView);
         btn_favorite = findViewById(R.id.btn_favorite);
 
         myDisplayMealDetailsPresenterImpl = new DisplayMealDetailsPresenterImpl(
@@ -80,6 +91,8 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
                     l_list.get(0).getStrIngredient3() + " " +
                     l_list.get(0).getStrIngredient4();
 
+            setupWebView(l_list);
+
             txt_ingredients.setText(temp);
 
             Glide.with(this)
@@ -89,6 +102,7 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
                             .placeholder(R.drawable.ic_launcher_foreground)
                             .error(R.drawable.ic_launcher_foreground))
                     .into(this.img_meal);
+
 
             btn_favorite.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -104,5 +118,32 @@ public class MealDetailsActivity extends AppCompatActivity implements MealDetail
     public void onFavAddclick(POJO_class favProduct) {
         myDisplayMealDetailsPresenterImpl.addToFav(favProduct);
 
+    }
+
+    private void setupWebView(List<POJO_class> l_list) {
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return !(url.startsWith(YOUTUBE_PREFIX + "watch") || url.startsWith(YOUTUBE_PREFIX + "embed/"));
+            }
+        });
+
+        String youtubeEmbedUrl = "https://www.youtube.com/embed/" + getYoutubeVideoId(l_list.get(0).getStrYoutube());
+        webView.loadUrl(youtubeEmbedUrl);
+
+    }
+
+    private String getYoutubeVideoId(String url) {
+        if (TextUtils.isEmpty(url)) return "";
+
+        Uri uri = Uri.parse(url);
+        String videoId = uri.getQueryParameter("v");
+
+        if (videoId == null) {
+            videoId = uri.getLastPathSegment();
+        }
+        return videoId != null ? videoId : "";
     }
 }
