@@ -11,10 +11,12 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.testing_day1.EventObserver
 import com.example.testing_day1.R
+import com.example.testing_day1.data.source.DefaultTasksRepository
 import com.example.testing_day1.databinding.TasksFragBinding
 import com.example.testing_day1.util.setupRefreshLayout
 import com.example.testing_day1.util.setupSnackbar
@@ -26,7 +28,12 @@ import timber.log.Timber
  */
 class TasksFragment : Fragment() {
 
-    private val viewModel by viewModels<TasksViewModel>()
+    //private val viewModel by viewModels<TasksViewModel>()
+    private val viewModel : TasksViewModel by lazy {
+        val factory = TasksViewModelFactory(
+            DefaultTasksRepository.getRepository(requireActivity().application))
+        ViewModelProvider(this, factory).get(TasksViewModel::class.java)
+    }
 
     private val args: TasksFragmentArgs by navArgs()
 

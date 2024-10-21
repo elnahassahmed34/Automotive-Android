@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.weatherapp.databinding.ActivityMainBinding
+import com.example.weatherapp.features.home.view.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
