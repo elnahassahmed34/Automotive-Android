@@ -1,15 +1,20 @@
 package com.example.testing_day1.tasks
 
+import MainCoroutineRule
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import getOrAwaitValue
 import com.example.testing_day1.R
 import com.example.testing_day1.data.source.IDefaultTasksRepository
+import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
@@ -21,15 +26,24 @@ class TasksViewModelTest {
     lateinit var tasksViewModel : TasksViewModel
     lateinit var repo : IDefaultTasksRepository
 
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
+
+    @Before
      fun setUp(){
         repo =  FakeTakasRepository()
         tasksViewModel = TasksViewModel(repo)
     }
 
-    @Test
-    fun addNewTask_newTaskEventIsNotNull() {
+    @After
+    fun tearDown() {
 
-        setUp()
+    }
+
+    @Test
+    fun addNewTask_newTaskEventIsNotNull() = runTest {
+
+        //setUp()
 
         tasksViewModel.addNewTask()
 
@@ -41,7 +55,7 @@ class TasksViewModelTest {
     @Test
     fun setFiltering_allTasks_setsAllTasksFilter() {
 
-        setUp()
+        //setUp()
 
         tasksViewModel.setFiltering(TasksFilterType.ALL_TASKS)
 
@@ -54,7 +68,7 @@ class TasksViewModelTest {
     @Test
     fun setFiltering_activeTasks_setsActiveTasksFilter() {
 
-        setUp()
+        //setUp()
 
         tasksViewModel.setFiltering(TasksFilterType.ACTIVE_TASKS)
 
@@ -67,7 +81,7 @@ class TasksViewModelTest {
     @Test
     fun setFiltering_completedTasks_setsCompletedTasksFilter() {
 
-        setUp()
+        //setUp()
 
         tasksViewModel.setFiltering(TasksFilterType.COMPLETED_TASKS)
 

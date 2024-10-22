@@ -15,9 +15,9 @@
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.example.weatherapp.FavoriteFragment"
+        android:name="com.example.weatherapp.features.favorites.view.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/alertsFragment"
         android:name="com.example.weatherapp.AlertFragment"
