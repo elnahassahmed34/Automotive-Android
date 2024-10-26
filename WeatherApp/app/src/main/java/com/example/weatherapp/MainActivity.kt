@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.features.favorites.view.FavoritesFragment
 import com.example.weatherapp.features.home.view.HomeFragment
+import com.example.weatherapp.features.settings.view.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.favorite -> replaceFragment(FavoritesFragment())
                 R.id.alert -> replaceFragment(AlertFragment())
-                R.id.settings -> replaceFragment(SettingFragment())
+                R.id.settings -> replaceFragment(SettingsFragment())
 
                 else ->{
 

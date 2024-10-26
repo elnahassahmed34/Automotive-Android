@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapp.SharedVM
 import com.example.weatherapp.features.home.viewmodel.HomeVM
+import com.example.weatherapp.features.settings.viewmodel.SettingsVM
 import com.example.weatherapp.model.repo.RepoInterface
 
 //import com.giraffe.weatherforecasapplication.features.alerts.bottomsheet.viewmodel.BottomSheetVM
@@ -21,9 +22,11 @@ class ViewModelFactory(private val repo: RepoInterface) : ViewModelProvider.Fact
         }
 //        }else if (modelClass.isAssignableFrom(AlertsVM::class.java)) {
 //            AlertsVM(repo) as T
-//        } else if (modelClass.isAssignableFrom(SettingsVM::class.java)) {
-//            SettingsVM(repo) as T
-//        } else if (modelClass.isAssignableFrom(MapVM::class.java)) {
+        else if (modelClass.isAssignableFrom(SettingsVM::class.java)) {
+            SettingsVM(repo) as T
+        }
+
+//        else if (modelClass.isAssignableFrom(MapVM::class.java)) {
 //            MapVM(repo) as T
         else if (modelClass.isAssignableFrom(SharedVM::class.java)) {
             SharedVM(repo) as T

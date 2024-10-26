@@ -25,9 +25,9 @@
         tools:layout="@layout/fragment_alert" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.weatherapp.SettingFragment"
+        android:name="com.example.weatherapp.features.settings.view.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.weatherapp.MapFragment"
