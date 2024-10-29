@@ -186,29 +186,5 @@ class SharedVM(val repo: RepoInterface) : ViewModel() {
     }
 
 
-    //===============================================================old===================================
 
-    fun selectLocation(lat: Double, lon: Double) {
-
-        /*viewModelScope.launch(Dispatchers.IO) {
-            repo.getForecast(lat, lon, false)
-                .catch { }
-                .collect {
-                    when (it) {
-                        is UiState.Fail -> {
-
-                        }
-
-                        UiState.Loading -> {
-
-                        }
-
-                        is UiState.Success -> {
-                            _selectedForecast.emit(UiState.Success(it.data))
-                        }
-                    }
-                }
-            //_selectedLocation.emit(Pair(lat,lon))
-        }*/
-    }
 }

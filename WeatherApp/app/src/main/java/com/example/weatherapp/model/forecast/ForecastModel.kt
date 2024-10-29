@@ -1,6 +1,7 @@
 package com.example.weatherapp.model.forecast
 
 import androidx.room.Entity
+import kotlinx.coroutines.flow.FlowCollector
 
 @Entity(tableName = "forecast_table", primaryKeys = ["lat","lon"])
 data class ForecastModel(
@@ -14,4 +15,8 @@ data class ForecastModel(
     var isCurrent:Boolean= false,
     var isFavorite:Boolean = false,
     val alerts: List<Alert>? = null,
-)
+) : FlowCollector<List<ForecastModel>> {
+    override suspend fun emit(value: List<ForecastModel>) {
+        TODO("Not yet implemented")
+    }
+}
