@@ -8,6 +8,7 @@ import com.example.weatherapp.model.forecast.ForecastModel
 import com.example.weatherapp.model.repo.RepoInterface
 import com.example.weatherapp.utils.Constants
 import com.example.weatherapp.utils.UiState
+import com.example.weatherapp.utils.getAddress
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -174,11 +175,11 @@ class SharedVM(val repo: RepoInterface) : ViewModel() {
             _selectedForecast.emit(UiState.Loading)
             repo.getForecast(lat, lon)
                 .catch {
-                    //Log.e(HomeFragment.TAG, "getForecast: ${it.message}")
+                    Log.e(HomeFragment.TAG, "getForecast: ${it.message}")
                 }
                 .collect {
                     it?.let { forecast ->
-
+                        Log.i("TAG", "#### $forecast")
                         setSelectedForecast(forecast)
                     }
                 }
@@ -186,5 +187,29 @@ class SharedVM(val repo: RepoInterface) : ViewModel() {
     }
 
 
+    //===============================================================old===================================
 
+    fun selectLocation(lat: Double, lon: Double) {
+
+        /*viewModelScope.launch(Dispatchers.IO) {
+            repo.getForecast(lat, lon, false)
+                .catch { }
+                .collect {
+                    when (it) {
+                        is UiState.Fail -> {
+
+                        }
+
+                        UiState.Loading -> {
+
+                        }
+
+                        is UiState.Success -> {
+                            _selectedForecast.emit(UiState.Success(it.data))
+                        }
+                    }
+                }
+            //_selectedLocation.emit(Pair(lat,lon))
+        }*/
+    }
 }

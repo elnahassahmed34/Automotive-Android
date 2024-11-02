@@ -27,7 +27,8 @@ class Repo private constructor(
     override suspend fun getForecast(
         lat: Double,
         lon: Double
-    ) = remoteSource.getForecast(lat, lon, localSource.getLanguage().first()).map { it.body() }
+        //) = remoteSource.getForecast(lat, lon, localSource.getLanguage().first()).map { it.body() }
+    ) = remoteSource.getForecast(lat, lon).map { it.body() }
 
 
     override suspend fun getFavorites() = localSource.getFavorites()

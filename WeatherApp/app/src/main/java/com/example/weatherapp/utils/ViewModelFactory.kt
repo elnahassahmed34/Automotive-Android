@@ -6,6 +6,7 @@ import com.example.weatherapp.SharedVM
 import com.example.weatherapp.features.alerts.bottomsheet.viewmodel.BottomSheetVM
 import com.example.weatherapp.features.alerts.viewmodel.AlertsVM
 import com.example.weatherapp.features.home.viewmodel.HomeVM
+import com.example.weatherapp.features.map.viewmodel.MapVM
 import com.example.weatherapp.features.settings.viewmodel.SettingsVM
 import com.example.weatherapp.model.repo.RepoInterface
 
@@ -29,8 +30,9 @@ class ViewModelFactory(private val repo: RepoInterface) : ViewModelProvider.Fact
             SettingsVM(repo) as T
         }
 
-//        else if (modelClass.isAssignableFrom(MapVM::class.java)) {
-//            MapVM(repo) as T
+        else if (modelClass.isAssignableFrom(MapVM::class.java)) {
+            MapVM(repo) as T
+        }
         else if (modelClass.isAssignableFrom(SharedVM::class.java)) {
             SharedVM(repo) as T
         }

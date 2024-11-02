@@ -2,7 +2,7 @@ package com.example.weatherapp.utils
 
 object Constants {
     const val URL = "https://api.openweathermap.org/"
-    const val API_KEY = "375d11598481406538e244d548560243"
+    const val API_KEY = "07499aba09bc7f760e6f15af565f5b13"
     const val UNITS = "metric"
     const val TEMP_UNIT = "TEMP_UNIT"
     const val WIND_SPEED_UNIT = "WIND_SPEED_UNIT"

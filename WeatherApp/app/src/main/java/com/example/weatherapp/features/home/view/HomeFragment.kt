@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.weatherapp.OnDrawerClick
+//import com.example.weatherapp.OnDrawerClick
 import com.example.weatherapp.R
 import com.example.weatherapp.SharedVM
 import com.example.weatherapp.database.ConcreteLocalSource
@@ -35,12 +35,11 @@ import com.example.weatherapp.model.repo.Repo
 import com.example.weatherapp.network.ApiClient
 import com.example.weatherapp.utils.Constants
 import com.example.weatherapp.utils.UiState
-//import com.example.weatherapp.utils.ViewModelFactory
+import com.example.weatherapp.utils.ViewModelFactory
 import com.example.weatherapp.utils.getIconRes
 import com.example.weatherapp.utils.toFahrenheit
 import com.example.weatherapp.utils.toKelvin
 import com.example.weatherapp.utils.toMilesPerHours
-import com.example.weatherapp.utils.ViewModelFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -64,7 +63,7 @@ class HomeFragment : Fragment() {
     private lateinit var factory: ViewModelFactory
     private lateinit var hourlyAdapter: HourlyAdapter
     private lateinit var dailyAdapter: DailyAdapter
-    private lateinit var onDrawerClick: OnDrawerClick
+    //private lateinit var onDrawerClick: OnDrawerClick
     private lateinit var sharedVM: SharedVM
     private lateinit var selectedForecast: ForecastModel
     private lateinit var tempUnit: String
@@ -107,7 +106,7 @@ class HomeFragment : Fragment() {
         Log.v(TAG, "onViewCreated: ")
         handleAdapters()
         observeSelectedForecast()
-//        handleClicks()
+        handleClicks()
 
     }
 
@@ -173,16 +172,16 @@ class HomeFragment : Fragment() {
 
     private fun handleClicks() {
         Log.w(TAG, "handleClicks: ")
-        onDrawerClick = activity as OnDrawerClick
+        //onDrawerClick = activity as OnDrawerClick
         binding.ivMore.setOnClickListener {
-            onDrawerClick.onClick()
+            //onDrawerClick.onClick()
         }
-//        binding.ivLocation.setOnClickListener {
-//            val action = HomeFragmentDirections.actionHomeFragmentToMapFragment()
-//            action.lat = selectedLat.toFloat()
-//            action.lon = selectedLon.toFloat()
-//            findNavController().navigate(action)
-//        }
+        binding.ivLocation.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToMapFragment()
+            action.lat = selectedLat.toFloat()
+            action.lon = selectedLon.toFloat()
+            findNavController().navigate(action)
+        }
         binding.ivCurrentLocation.setOnClickListener {
             if (isConnected()) {
                 getLocation()
