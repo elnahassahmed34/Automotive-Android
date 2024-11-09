@@ -71,6 +71,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleApiClient.ConnectionCa
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
         binding.btnConfirm.setOnClickListener {
             if(isConnected()) {
                 sharedVM.getForecast(lat,lon)

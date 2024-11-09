@@ -1,5 +1,6 @@
-package com.example.weatherapp.database
+package com.example.weatherapp.model.repo
 
+import com.example.weatherapp.database.LocalSource
 import com.example.weatherapp.model.alert.AlertItem
 import com.example.weatherapp.model.forecast.ForecastModel
 import com.example.weatherapp.utils.Constants

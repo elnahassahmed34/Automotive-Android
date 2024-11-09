@@ -10,12 +10,6 @@ import com.example.weatherapp.features.map.viewmodel.MapVM
 import com.example.weatherapp.features.settings.viewmodel.SettingsVM
 import com.example.weatherapp.model.repo.RepoInterface
 
-//import com.giraffe.weatherforecasapplication.features.alerts.bottomsheet.viewmodel.BottomSheetVM
-//import com.giraffe.weatherforecasapplication.features.alerts.viewmodel.AlertsVM
-//import com.giraffe.weatherforecasapplication.features.home.viewmodel.HomeVM
-//import com.giraffe.weatherforecasapplication.features.map.viewmodel.MapVM
-//import com.giraffe.weatherforecasapplication.features.settings.viewmodel.SettingsVM
-//import com.giraffe.weatherforecasapplication.model.repo.RepoInterface
 
 
 class ViewModelFactory(private val repo: RepoInterface) : ViewModelProvider.Factory {

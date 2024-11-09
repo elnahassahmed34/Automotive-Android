@@ -1,6 +1,5 @@
 package com.example.weatherapp.model.repo
 
-//import com.giraffe.weatherforecasapplication.database.LocalSource
 import com.example.weatherapp.database.LocalSource
 import com.example.weatherapp.model.alert.AlertItem
 import com.example.weatherapp.model.forecast.ForecastModel
@@ -27,8 +26,7 @@ class Repo private constructor(
     override suspend fun getForecast(
         lat: Double,
         lon: Double
-        //) = remoteSource.getForecast(lat, lon, localSource.getLanguage().first()).map { it.body() }
-    ) = remoteSource.getForecast(lat, lon).map { it.body() }
+        ) = remoteSource.getForecast(lat, lon, localSource.getLanguage().first().toString()).map { it.body() }
 
 
     override suspend fun getFavorites() = localSource.getFavorites()

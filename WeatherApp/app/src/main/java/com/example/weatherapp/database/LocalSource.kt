@@ -6,13 +6,16 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface LocalSource {
+
     suspend fun getFavorites():Flow<List<ForecastModel>>
     suspend fun insertFavorite(forecast: ForecastModel)
     suspend fun deleteFavorite(timezone:String)
     suspend fun deleteFavorites()
+
     suspend fun getAlerts(): Flow<List<AlertItem>>
     suspend  fun insertAlert(alertItem: AlertItem)
     suspend fun deleteAlert(alertId: Int)
+
     suspend fun getLanguage():Flow<String>
     suspend fun getTempUnit():Flow<String>
     suspend fun getWindSpeedUnit():Flow<String>

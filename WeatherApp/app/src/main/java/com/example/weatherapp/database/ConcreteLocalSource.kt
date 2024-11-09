@@ -5,7 +5,6 @@ import com.example.weatherapp.model.alert.AlertItem
 import com.example.weatherapp.model.forecast.ForecastModel
 import com.example.weatherapp.utils.Constants
 import com.example.weatherapp.utils.getAddress
-import com.example.weatherapp.database.SharedHelper
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.flow
 

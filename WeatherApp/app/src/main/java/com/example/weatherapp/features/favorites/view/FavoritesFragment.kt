@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherapp.OnDrawerClick
 import com.example.weatherapp.R
 import com.example.weatherapp.SharedVM
 import com.example.weatherapp.database.ConcreteLocalSource
@@ -29,11 +30,12 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.OnSelectClick {
 
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var factory: ViewModelFactory
-    //private lateinit var onDrawerClick: OnDrawerClick
+    private lateinit var onDrawerClick: OnDrawerClick
     private lateinit var adapter: FavoritesAdapter
     private lateinit var sharedVM: SharedVM
     private var tempForecast: ForecastModel? = null
     private lateinit var itemTouchHelper: ItemTouchHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleInit()
@@ -93,9 +95,9 @@ class FavoritesFragment : Fragment(), FavoritesAdapter.OnSelectClick {
         super.onViewCreated(view, savedInstanceState)
         showLoading()
         binding.rvFavorites.visibility = View.INVISIBLE
-        //onDrawerClick = activity as OnDrawerClick
+        onDrawerClick = activity as OnDrawerClick
         binding.ivMore.setOnClickListener {
-            //  onDrawerClick.onClick()
+            onDrawerClick.onClick()
         }
 
 

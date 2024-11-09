@@ -1,9 +1,6 @@
 package com.example.weatherapp.model.repo
 
-import com.example.weatherapp.database.FakeLocalSource
-import com.example.weatherapp.model.alert.AlertItem
 import com.example.weatherapp.model.forecast.ForecastModel
-import com.example.weatherapp.network.FakeApiClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -41,7 +38,6 @@ class RepoTest {
         assertEquals("GMT", result?.timezone)
         assertEquals(latitude, result?.lat)
         assertEquals(longitude, result?.lon)
-        //assertEquals(75.0, result?.current?.clouds, 0.1)
     }
 
     @Test

@@ -1,6 +1,7 @@
-package com.example.weatherapp.network
+package com.example.weatherapp.model.repo
 
 import com.example.weatherapp.model.forecast.*
+import com.example.weatherapp.network.RemoteSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response

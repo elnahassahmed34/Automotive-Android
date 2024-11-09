@@ -96,19 +96,24 @@ dependencies {
     //worker
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 
+
+
     //shimmer
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
-
-    testImplementation("androidx.test:core-ktx:1.5.0")
-    testImplementation("androidx.test.ext:junit-ktx:1.1.5")
-    testImplementation ("org.robolectric:robolectric:4.8")
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    // Coroutine testing
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
 
 
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
-    testImplementation("app.cash.turbine:turbine:0.5.1")
+    // For InstantTaskExecutorRule
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+
+    // For Robolectric
+    testImplementation("org.robolectric:robolectric:4.9")
+
+    // Room testing utilities
+    testImplementation("androidx.room:room-testing:2.5.0")
+
+
+
 }

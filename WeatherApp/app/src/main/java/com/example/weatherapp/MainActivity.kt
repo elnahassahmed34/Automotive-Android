@@ -4,36 +4,27 @@ package com.example.weatherapp
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.weatherapp.database.ConcreteLocalSource
 import com.example.weatherapp.databinding.ActivityMainBinding
-import com.example.weatherapp.features.settings.viewmodel.SettingsVM
 import com.example.weatherapp.model.repo.Repo
 import com.example.weatherapp.network.ApiClient
 import com.example.weatherapp.utils.Constants
 import com.example.weatherapp.utils.ViewModelFactory
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.Locale
 
 
 class MainActivity : AppCompatActivity(), OnDrawerClick {
+
     companion object {
         private const val TAG = "MainActivityTag"
     }
@@ -44,20 +35,8 @@ class MainActivity : AppCompatActivity(), OnDrawerClick {
     private lateinit var factory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        /*val window: Window = this.window
-        window.statusBarColor = Color.BLACK
-        val decorView = window.decorView
-        var flags = decorView.systemUiVisibility
-        flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        decorView.systemUiVisibility = flags*/
-
-        //window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        //window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
-        //window.statusBarColor = ContextCompat.getColor(this, R.color.black)
-
-
 
 
         factory = ViewModelFactory(Repo.getInstance(ApiClient, ConcreteLocalSource(this)))
@@ -78,26 +57,9 @@ class MainActivity : AppCompatActivity(), OnDrawerClick {
         }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        /*window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = Color.BLACK
-        val decorView = window.decorView
-        var flags = decorView.systemUiVisibility
-        flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        decorView.systemUiVisibility = flags*/
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(binding.navigationView, navController)
-        /*if (intent.hasExtra(Constants.CLICKED_ALERT_ID)){
-            val lat = intent.getDoubleExtra(Constants.EXTRA_LAT,0.0)
-            val lon = intent.getDoubleExtra(Constants.EXTRA_LON,0.0)
-            sharedVM.selectLocation(lat,lon)
-            Log.i(TAG, "onCreate: ${intent.getIntExtra(Constants.CLICKED_ALERT_ID,-1)}")
-        }*/
-
-
-
 
     }
 
@@ -129,8 +91,4 @@ class MainActivity : AppCompatActivity(), OnDrawerClick {
         )
     }
 
-    private fun refresh(){
-        finish()
-        startActivity(Intent(this,MainActivity::class.java))
-    }
 }

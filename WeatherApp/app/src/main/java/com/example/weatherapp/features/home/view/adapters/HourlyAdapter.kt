@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bumptech.glide.Glide
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.HourlyItemBinding
 import com.example.weatherapp.model.forecast.Hourly
@@ -22,11 +21,8 @@ class HourlyAdapter(private val list: MutableList<Hourly>, val tempUnit:String) 
     inner class HourlyVH(private val binding: HourlyItemBinding) : ViewHolder(binding.root) {
         fun bind(item: Hourly) {
             binding.tvTime.text = unixTimeToReadableDate(item.dt.toLong())
-            /*Glide.with(binding.root.context)
-                .load("https://openweathermap.org/img/wn/${item.weather[0].icon}.png")
-                .into(binding.ivWeather)*/
             binding.ivWeather.setImageResource(getIconRes(item.weather[0].icon))
-            binding.tvTemp.text= convertTempToString(item.temp, tempUnit)//item.temp.toInt().toString().plus("°")
+            binding.tvTemp.text= convertTempToString(item.temp, tempUnit)
         }
 
         private fun convertTempToString(temp:Double,tempUnit:String) :String{
@@ -40,7 +36,7 @@ class HourlyAdapter(private val list: MutableList<Hourly>, val tempUnit:String) 
         }
         private fun unixTimeToReadableDate(unixTime: Long): String {
             val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-            dateFormat.timeZone = TimeZone.getDefault() // Set your desired time zone
+            dateFormat.timeZone = TimeZone.getDefault()
             val date = Date(unixTime * 1000)
             return dateFormat.format(date)
         }

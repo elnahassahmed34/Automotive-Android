@@ -35,7 +35,7 @@ class SettingsFragment : Fragment() {
     private lateinit var sharedVM: SharedVM
     private lateinit var factory: ViewModelFactory
 
-    //private lateinit var onDrawerClick: OnDrawerClick
+    private lateinit var onDrawerClick: OnDrawerClick
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         factory =
@@ -58,9 +58,9 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //onDrawerClick = activity as OnDrawerClick
+        onDrawerClick = activity as OnDrawerClick
         binding.ivMore.setOnClickListener {
-            //onDrawerClick.onClick()
+            onDrawerClick.onClick()
         }
 
 

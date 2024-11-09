@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bumptech.glide.Glide
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.DailyItemBinding
 import com.example.weatherapp.model.forecast.Daily
@@ -22,9 +21,6 @@ class DailyAdapter(private val list: MutableList<Daily>, val tempUnit:String) : 
     inner class DailyVH(private val binding: DailyItemBinding) : ViewHolder(binding.root) {
         fun bind(item: Daily) {
             binding.tvDay.text = unixTimeToReadableDate(item.dt.toLong())
-            /*Glide.with(binding.root.context)
-                .load("https://openweathermap.org/img/wn/${item.weather[0].icon}.png")
-                .into(binding.ivWeather)*/
             binding.ivWeather.setImageResource(getIconRes(item.weather[0].icon))
             binding.tvDes.text = item.weather[0].description
             binding.tvTemp.text= convertTempToString(item.temp.min, tempUnit ).plus(" / ")//item.temp.min.toInt().toString().plus("°/")

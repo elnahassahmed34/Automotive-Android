@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" package="com.example.aidliti">
+
+    <permission android:name="com.example.aidliti.PERMISSION_BIND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -11,6 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AIDLITI"
-        tools:targetApi="31" />
+        tools:targetApi="31">
+        <service
+            android:name=".Hamada"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.example.aidliti.PERMISSION_BIND_SERVICE">
+            <intent-filter>
+                <action android:name="com.example.aidliti.Hamada"/>
+            </intent-filter>
+        </service>
+    </application>
 
 </manifest>

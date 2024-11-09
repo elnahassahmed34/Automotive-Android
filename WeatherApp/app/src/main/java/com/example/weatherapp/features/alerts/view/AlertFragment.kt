@@ -40,7 +40,7 @@ class AlertsFragment : Fragment(), BottomSheet.OnBottomSheetDismiss {
     private lateinit var factory: ViewModelFactory
     private lateinit var adapter: AlertsAdapter
     private lateinit var itemTouchHelper: ItemTouchHelper
-    //private lateinit var onDrawerClick: OnDrawerClick
+    private lateinit var onDrawerClick: OnDrawerClick
 
     // method to ask user to grant the Overlay permission
     private fun checkOverlayPermission() {
@@ -101,10 +101,10 @@ class AlertsFragment : Fragment(), BottomSheet.OnBottomSheetDismiss {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.i(TAG, "onViewCreated: ")
         super.onViewCreated(view, savedInstanceState)
-//        onDrawerClick = activity as OnDrawerClick
-//        binding.ivMore.setOnClickListener {
-//            onDrawerClick.onClick()
-//        }
+        onDrawerClick = activity as OnDrawerClick
+        binding.ivMore.setOnClickListener {
+            onDrawerClick.onClick()
+        }
         binding.rvAlerts.adapter = adapter
         itemTouchHelper.attachToRecyclerView(binding.rvAlerts)
         observeAlerts()

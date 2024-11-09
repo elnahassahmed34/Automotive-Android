@@ -21,8 +21,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-//import com.example.weatherapp.OnDrawerClick
+import com.example.weatherapp.OnDrawerClick
 import com.example.weatherapp.R
 import com.example.weatherapp.SharedVM
 import com.example.weatherapp.database.ConcreteLocalSource
@@ -53,6 +52,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 class HomeFragment : Fragment() {
+
     companion object {
         const val REQUEST_CODE = 7007
         const val TAG = "HomeFragment"
@@ -63,16 +63,15 @@ class HomeFragment : Fragment() {
     private lateinit var factory: ViewModelFactory
     private lateinit var hourlyAdapter: HourlyAdapter
     private lateinit var dailyAdapter: DailyAdapter
-    //private lateinit var onDrawerClick: OnDrawerClick
+    private lateinit var onDrawerClick: OnDrawerClick
     private lateinit var sharedVM: SharedVM
-    private lateinit var selectedForecast: ForecastModel
-    private lateinit var tempUnit: String
-    private lateinit var windSpeedUnit: String
-    private lateinit var favorites: List<ForecastModel>
+
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
     private var location: Location? = null
     private var selectedLat: Double = 0.0
     private var selectedLon: Double = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.v(TAG, "onCreate: ")
@@ -124,21 +123,17 @@ class HomeFragment : Fragment() {
             sharedVM.selectedForecast.collect {
                 when (it) {
                     is UiState.Fail -> {
-                        Log.e(TAG, "observeSelectedForecast: ${it.error}")
                         if (isConnected()) {
                             getLocation()
                         }
                     }
 
                     is UiState.Loading -> {
-                        Log.i(TAG, "observeSelectedForecast: loading")
                         showLoading()
                     }
 
                     is UiState.Success -> {
-                        Log.d(TAG, "observeSelectedForecast: ${it.data}")
-                        Log.d(TAG, "observeSelectedForecast: isFavorite: ${it.data?.isFavorite}")
-                        hideLoading()
+                          hideLoading()
                         it.data?.let { selectedForecast ->
                             selectedLat = selectedForecast.lat
                             selectedLon = selectedForecast.lon
@@ -172,9 +167,9 @@ class HomeFragment : Fragment() {
 
     private fun handleClicks() {
         Log.w(TAG, "handleClicks: ")
-        //onDrawerClick = activity as OnDrawerClick
+        onDrawerClick = activity as OnDrawerClick
         binding.ivMore.setOnClickListener {
-            //onDrawerClick.onClick()
+            onDrawerClick.onClick()
         }
         binding.ivLocation.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToMapFragment()
@@ -195,7 +190,6 @@ class HomeFragment : Fragment() {
     private fun observeFavorites() {
         lifecycleScope.launch {
             sharedVM.favorites.collect {
-                Log.d(TAG, "observeFavorites: ${it.size}")
                 sharedVM.getSelectedForecast()
             }
         }
@@ -213,10 +207,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleCurrentIcon(forecast: ForecastModel) {
-        /*Glide.with(requireContext())
-            .load("https://openweathermap.org/img/wn/${forecast.current?.weather?.get(0)?.icon}.png")
-            .into(binding.ivCurrent)*/
-
         binding.ivCurrent.setImageResource(getIconRes(forecast.current?.weather?.get(0)?.icon?:""))
     }
 
@@ -389,7 +379,6 @@ class HomeFragment : Fragment() {
     @SuppressLint("MissingPermission")
     private fun requestNewLocationData() {
         Log.i(TAG, "requestNewLocationData: ")
-        //binding.homeShimmer.visibility = View.VISIBLE
         showLoading()
         val locationRequest = LocationRequest().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY

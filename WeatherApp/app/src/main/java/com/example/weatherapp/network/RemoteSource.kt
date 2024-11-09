@@ -6,5 +6,5 @@ import retrofit2.Response
 
 
 interface RemoteSource {
-    suspend fun getForecast(lat:Double = 33.44,lon:Double = -94.04,lang:String = "ar"): Flow<Response<ForecastModel>>
+    suspend fun getForecast(lat:Double = 44.4,lon:Double = 45.6,lang:String = "en"): Flow<Response<ForecastModel>>
 }

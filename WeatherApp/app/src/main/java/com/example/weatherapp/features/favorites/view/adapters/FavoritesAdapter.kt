@@ -15,9 +15,6 @@ class FavoritesAdapter(val list: MutableList<ForecastModel>, private val onSelec
     inner class FavoriteVH(private val binding: FavoriteItemBinding) : ViewHolder(binding.root) {
         fun bind(item: ForecastModel) {
             binding.tvZone.text = item.timezone
-            /*Glide.with(binding.root.context)
-                .load("https://openweathermap.org/img/wn/${item.current?.weather?.get(0)?.icon}.png")
-                .into(binding.ivIcon)*/
             binding.ivIcon.setImageResource(getIconRes(item.current?.weather?.get(0)?.icon?:""))
             binding.tvDes.text = item.current?.weather?.get(0)?.description ?: "no description"
             binding.root.setOnClickListener{
